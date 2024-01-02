@@ -1,31 +1,38 @@
 "use client"
-import React from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog";
-import { ImSpinner2 } from "react-icons/im";
-import { BsFileEarmarkPlus } from "react-icons/bs";
-import { Button } from "./ui/button";
-import { useForm } from "react-hook-form";
 import { formSchema, formSchemaType } from "@/schemas/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { BsFileEarmarkPlus } from "react-icons/bs";
+import { ImSpinner2 } from "react-icons/im";
+import { Button } from "./ui/button";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "./ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { toast } from "./ui/use-toast";
+import { CreateForm } from "@/actions/form";
+import { useState } from "react";
 const CreateFormBtn = () => {
+    const [open, setOpen] = useState(false);
 const form=useForm<formSchemaType>({
     resolver:zodResolver(formSchema)
 })
 const onSubmit=async (values:formSchemaType)=>{
     try {
-        
+        const formId = await CreateForm(values);
+        toast({
+          title: "Success",
+          description: "Form created successfully",
+        });
+        setOpen(false)
     } catch (error) {
         
         toast({
@@ -37,7 +44,7 @@ const onSubmit=async (values:formSchemaType)=>{
 }
     
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
           variant={"outline"}
