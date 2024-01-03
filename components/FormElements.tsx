@@ -26,7 +26,9 @@ export type FormElementInstance = {
         label: string;
       };
     construct: (id: string) => FormElementInstance;
-    designerComponent:React.FC, //in designer
+    designerComponent:React.FC<{
+        elementInstance:FormElementInstance
+    }>, //in designer
     formComponent:React.FC,  //in preview
     propertiesComponent:React.FC,
   }

@@ -1,7 +1,9 @@
 "use client"
 import React from 'react'
-import { ElementsType, FormElement } from '../FormElements';
+import { ElementsType, FormElement, FormElementInstance } from '../FormElements';
 import { MdTextFields } from "react-icons/md";
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
 type Props = {}
 const type: ElementsType = "TextField";
 const extraAttributes = {
@@ -13,7 +15,7 @@ const extraAttributes = {
   
 export const TextFieldFormElement: FormElement = {
     type,
-    designerComponent:()=><div>designerComponent</div>,
+    designerComponent:TextFieldDesignerComponent,
     formComponent:()=><div>formComponent</div>,
     propertiesComponent:()=><div>propertiesComponent</div>,
     designerBtnElement: {
@@ -26,4 +28,22 @@ export const TextFieldFormElement: FormElement = {
         extraAttributes,
       }),
 
+}
+
+type CustomInstance = FormElementInstance & {
+  extraAttributes: typeof extraAttributes;
+};
+
+function TextFieldDesignerComponent({elementInstance}:{elementInstance:FormElementInstance}){
+  const element = elementInstance as CustomInstance;
+  const { label, required, placeHolder, helperText } = element.extraAttributes;
+
+  return  <div className="flex flex-col gap-2 w-full">
+  <Label>
+    {required && "*"}
+    {label}
+  </Label>
+  <Input readOnly disabled placeholder={placeHolder} />
+  {helperText && <p className="text-muted-foreground text-[0.8rem]">{helperText}</p>}
+</div>
 }
