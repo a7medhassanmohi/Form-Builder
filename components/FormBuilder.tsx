@@ -1,8 +1,12 @@
+"use client"
 import { Form } from '@prisma/client'
 import React from 'react'
 import SaveFormBtn from './SaveFormBtn'
 import PublishFormBtn from './PublishFormBtn'
 import PreviewDialogBtn from './PreviewDialogBtn'
+import Designer from './Designer'
+import { DndContext } from '@dnd-kit/core'
+import DragOverlayWrapper from './DragOverlayWrapper'
 
 type Props = {
     form:Form
@@ -10,6 +14,7 @@ type Props = {
 
 const FormBuilder = ({form}: Props) => {
   return (
+    <DndContext >
     <main className="flex flex-col w-full">
         <nav className="flex justify-between border-b-2 p-4 gap-3 items-center">
           <h2 className="truncate font-medium">
@@ -27,9 +32,11 @@ const FormBuilder = ({form}: Props) => {
           </div>
         </nav>
         <div className="flex w-full flex-grow items-center justify-center relative overflow-y-auto h-[200px] bg-accent bg-[url(/paper.svg)] dark:bg-[url(/paper-dark.svg)]">
-          {/* <Designer /> */}
+          <Designer />
         </div>
       </main>
+      <DragOverlayWrapper />
+    </DndContext>
   )
 }
 
