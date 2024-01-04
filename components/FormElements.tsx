@@ -30,7 +30,9 @@ export type FormElementInstance = {
         elementInstance:FormElementInstance
     }>, //in designer
     formComponent:React.FC,  //in preview
-    propertiesComponent:React.FC,
+    propertiesComponent:React.FC<{
+      elementInstance:FormElementInstance
+    }>,
   }
   type FormElementsType = {
     [key in ElementsType]: FormElement;

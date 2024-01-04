@@ -21,7 +21,8 @@ import { BiSolidTrash } from "react-icons/bi";
 type Props = {};
 
 const Designer = (props: Props) => {
-  const { elements, addElement } = useDesigner();
+  const { elements, addElement,selectedElement,setSelectedElement } = useDesigner();
+
   const droppable = useDroppable({
     id: "designer-drop-area",
     data: {
@@ -52,7 +53,11 @@ const Designer = (props: Props) => {
   });
   return (
     <div className="flex w-full h-full">
-      <div className="p-4 w-full">
+      <div className="p-4 w-full"
+        onClick={() => {
+          if (selectedElement) setSelectedElement(null);
+        }}
+      >
         <div
           ref={droppable.setNodeRef}
           className={cn(
@@ -65,7 +70,7 @@ const Designer = (props: Props) => {
               Drop here
             </p>
           )}
-          {droppable.isOver && (
+          {droppable.isOver && elements.length === 0 &&  (
             <div className="p-4 w-full">
               <div className="h-[120px] rounded-md bg-primary/20"></div>
             </div>
@@ -88,7 +93,7 @@ type DesignElementProps = {
   element: FormElementInstance;
 };
 function DesignerElementWrapper({ element }: DesignElementProps) {
-  const { removeElement } = useDesigner();
+  const { removeElement,selectedElement,setSelectedElement } = useDesigner();
   const [mouseIsOver, setMouseIsOver] = useState<boolean>(false);
   const topHalf = useDroppable({
     id: element.id + "-top",
@@ -129,6 +134,10 @@ function DesignerElementWrapper({ element }: DesignElementProps) {
       onMouseLeave={() => {
         setMouseIsOver(false);
       }}
+      onClick={(e) => {
+        e.stopPropagation();
+        setSelectedElement(element);
+      }}
     >
       <div
         ref={topHalf.setNodeRef}
@@ -159,7 +168,7 @@ function DesignerElementWrapper({ element }: DesignElementProps) {
           </div>
         </>
       )}
-
+ {topHalf.isOver && <div className="absolute top-0 w-full rounded-md h-[7px] bg-primary rounded-b-none" />}
       <div
         className={cn(
           "flex w-full h-[120px] items-center rounded-md bg-accent/40 px-4 py-2 pointer-events-none opacity-100",
@@ -168,6 +177,7 @@ function DesignerElementWrapper({ element }: DesignElementProps) {
       >
         <DesignerElement elementInstance={element} />
       </div>
+      {bottomHalf.isOver && <div className="absolute bottom-0 w-full rounded-md h-[7px] bg-primary rounded-t-none" />}
     </div>
   );
 }
