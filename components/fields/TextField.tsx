@@ -41,7 +41,7 @@ type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
 export const TextFieldFormElement: FormElement = {
   type,
   designerComponent: TextFieldDesignerComponent,
-  formComponent: () => <div>formComponent</div>,
+  formComponent: TextFieldFormComponent,
   propertiesComponent: TextFieldPropertiesComponent,
   designerBtnElement: {
     icon: MdTextFields,
@@ -207,4 +207,12 @@ function TextFieldPropertiesComponent({
       </form>
     </Form>
   );
+}
+
+function TextFieldFormComponent({
+  elementInstance,
+}: {
+  elementInstance: FormElementInstance;
+}){
+return <div className="">TextFieldFormComponent</div>
 }

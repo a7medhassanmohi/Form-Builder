@@ -29,7 +29,9 @@ export type FormElementInstance = {
     designerComponent:React.FC<{
         elementInstance:FormElementInstance
     }>, //in designer
-    formComponent:React.FC,  //in preview
+    formComponent:React.FC<{
+      elementInstance:FormElementInstance
+    }>,  //in preview
     propertiesComponent:React.FC<{
       elementInstance:FormElementInstance
     }>,
