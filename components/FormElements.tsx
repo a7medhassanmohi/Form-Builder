@@ -1,5 +1,6 @@
 import { TextFieldFormElement } from "./fields/TextField";
 
+export type SubmitFunction=(key: string, value: string)=>void
 export type ElementsType =
   | "TextField"
 //   | "TitleField"
@@ -30,7 +31,8 @@ export type FormElementInstance = {
         elementInstance:FormElementInstance
     }>, //in designer
     formComponent:React.FC<{
-      elementInstance:FormElementInstance
+      elementInstance:FormElementInstance,
+      submitValue?:SubmitFunction
     }>,  //in preview
     propertiesComponent:React.FC<{
       elementInstance:FormElementInstance

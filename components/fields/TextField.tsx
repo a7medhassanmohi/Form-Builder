@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ElementsType,
   FormElement,
   FormElementInstance,
+  SubmitFunction,
 } from "../FormElements";
 import { MdTextFields } from "react-icons/md";
 import { Label } from "../ui/label";
@@ -22,6 +23,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Switch } from "../ui/switch";
+import { cn } from "@/lib/utils";
 type Props = {};
 const type: ElementsType = "TextField";
 const extraAttributes = {
@@ -211,8 +213,30 @@ function TextFieldPropertiesComponent({
 
 function TextFieldFormComponent({
   elementInstance,
+  submitValue
 }: {
   elementInstance: FormElementInstance;
+  submitValue?:SubmitFunction 
 }){
-return <div className="">TextFieldFormComponent</div>
+  const [value, setValue] = useState("");
+  const element = elementInstance as CustomInstance;
+  const { label, required, placeHolder, helperText } = element.extraAttributes;
+return  <div className="flex flex-col gap-2 w-full">
+<Label >
+  {label}
+  {required && "*"}
+</Label>
+<Input
+  className=''
+  placeholder={placeHolder}
+  onChange={(e) => setValue(e.target.value)}
+  onBlur={(e) => {
+    if (!submitValue) return;
+    submitValue(element.id, e.target.value);
+  }}
+  value={value}
+
+/>
+{helperText && <p className={cn("text-muted-foreground text-[0.8rem]",)}>{helperText}</p>}
+</div>
 }
