@@ -1,5 +1,6 @@
 import { ParagraphFieldFormElement } from "./fields/ParagraphField";
 import { SeparatorFieldFormElement } from "./fields/SeparatorField";
+import { SpacerFieldFormElement } from "./fields/SpacerField";
 import { SubTitleFieldFormElement } from "./fields/SubTitleField";
 import { TextFieldFormElement } from "./fields/TextField";
 import { TitleFieldFormElement } from "./fields/TitleField";
@@ -11,7 +12,7 @@ export type ElementsType =
   | "SubTitleField"
   | "ParagraphField"
   | "SeparatorField"
-//   | "SpacerField"
+  | "SpacerField"
 //   | "NumberField"
 //   | "TextAreaField"
 //   | "DateField"
@@ -55,4 +56,5 @@ export type FormElementInstance = {
     SubTitleField:SubTitleFieldFormElement,
     ParagraphField:ParagraphFieldFormElement,
     SeparatorField:SeparatorFieldFormElement,
+    SpacerField:SpacerFieldFormElement,
   }
