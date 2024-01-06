@@ -1,9 +1,10 @@
 import { TextFieldFormElement } from "./fields/TextField";
+import { TitleFieldFormElement } from "./fields/TitleField";
 
 export type SubmitFunction=(key: string, value: string)=>void
 export type ElementsType =
   | "TextField"
-//   | "TitleField"
+  | "TitleField"
 //   | "SubTitleField"
 //   | "ParagraphField"
 //   | "SeparatorField"
@@ -46,5 +47,6 @@ export type FormElementInstance = {
   };
 
   export const FormElements: FormElementsType={
-    TextField:TextFieldFormElement
+    TextField:TextFieldFormElement,
+    TitleField:TitleFieldFormElement,
   }
