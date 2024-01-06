@@ -4,6 +4,8 @@ import { FormElement } from './FormElements'
 import { Button } from './ui/button'
 import { useDraggable } from '@dnd-kit/core'
 import { cn } from '@/lib/utils'
+import useDesigner from './hooks/useDesigner'
+import { idGenerator } from '@/lib/idGenerator'
 
 type Props = {
     formElement:FormElement
@@ -11,6 +13,7 @@ type Props = {
 
 const SidebarBtnElement = ({formElement}: Props) => {
     const { label, icon: Icon } = formElement.designerBtnElement;
+    const { addElement,elements } = useDesigner();
     const draggable = useDraggable({
         id: `designer-btn-${formElement.type}`,
         data: {
@@ -28,6 +31,9 @@ const SidebarBtnElement = ({formElement}: Props) => {
         "flex flex-col gap-2 h-[120px] w-[120px] cursor-grab",
         draggable.isDragging && "ring-2 ring-primary",
       )}
+    onClick={()=>{
+      addElement(elements.length,formElement.construct(idGenerator()))
+    }}
 
   >
     <Icon className="h-8 w-8 text-primary cursor-grab" />
