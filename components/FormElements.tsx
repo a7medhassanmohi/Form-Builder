@@ -1,6 +1,7 @@
 import { DateFieldFormElement } from "./fields/DateField";
 import { NumberFieldFormElement } from "./fields/NumberField";
 import { ParagraphFieldFormElement } from "./fields/ParagraphField";
+import { SelectFieldFormElement } from "./fields/SelectField";
 import { SeparatorFieldFormElement } from "./fields/SeparatorField";
 import { SpacerFieldFormElement } from "./fields/SpacerField";
 import { SubTitleFieldFormElement } from "./fields/SubTitleField";
@@ -19,7 +20,7 @@ export type ElementsType =
   | "NumberField"
   | "TextAreaField"
   | "DateField"
-//   | "SelectField"
+  | "SelectField"
 //   | "CheckboxField";
 
 export type FormElementInstance = {
@@ -63,4 +64,5 @@ export type FormElementInstance = {
     NumberField:NumberFieldFormElement,
     TextAreaField:TextAreaFieldFormElement,
     DateField:DateFieldFormElement,
+    SelectField:SelectFieldFormElement,
   }
