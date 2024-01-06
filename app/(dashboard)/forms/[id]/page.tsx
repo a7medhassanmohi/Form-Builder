@@ -8,6 +8,7 @@ import { HiCursorClick } from 'react-icons/hi';
 import { TbArrowBounce } from 'react-icons/tb';
 import VisitBtn from '@/components/VisitBtn';
 import FormLinkShare from '@/components/FormLinkShare';
+import SubmissionsTable from '@/components/SubmissionsTable';
 interface Props{
   params:{
     id:string
@@ -81,7 +82,7 @@ const FromDetailsPage = async ({params}:Props) => {
         </div>
   
         <div className="container pt-10">
-          {/* <SubmissionsTable id={form.id} /> */}
+          <SubmissionsTable id={form.id} />
         </div>
       </>
     );

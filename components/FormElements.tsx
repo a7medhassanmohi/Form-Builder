@@ -32,11 +32,14 @@ export type FormElementInstance = {
     }>, //in designer
     formComponent:React.FC<{
       elementInstance:FormElementInstance,
-      submitValue?:SubmitFunction
+      submitValue?:SubmitFunction,
+      isInvalid?:boolean,
+      defaultValue:string
     }>,  //in preview
     propertiesComponent:React.FC<{
       elementInstance:FormElementInstance
     }>,
+    validate: (formElement: FormElementInstance, currentValue: string) => boolean;
   }
   type FormElementsType = {
     [key in ElementsType]: FormElement;
