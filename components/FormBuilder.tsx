@@ -21,7 +21,7 @@ type Props = {
 
 const FormBuilder = ({form}: Props) => {
   const [isReady, setIsReady] = useState(false);
-  const { setElements } = useDesigner();
+  const { setElements,setSelectedElement } = useDesigner();
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
       distance: 10, // 10px
@@ -41,6 +41,7 @@ const FormBuilder = ({form}: Props) => {
     const elements = JSON.parse(form.content);
     const readyTimeout = setTimeout(() => setIsReady(true), 500);
     setElements(elements);
+    setSelectedElement(null)
     return () => clearTimeout(readyTimeout);
   
   }, [form, setElements,isReady]);
