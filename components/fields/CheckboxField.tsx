@@ -209,7 +209,7 @@ function CheckboxFieldFormComponent({
   elementInstance: FormElementInstance;
   submitValue?:SubmitFunction ,
   isInvalid?:boolean,
-  defaultValue:string
+  defaultValue?:string
 }){
   const [value, setValue] = useState<boolean>(defaultValue === "true" ? true : false);
 

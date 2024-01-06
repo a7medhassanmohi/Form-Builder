@@ -224,7 +224,7 @@ function DateFieldFormComponent({
   elementInstance: FormElementInstance;
   submitValue?: SubmitFunction;
   isInvalid?: boolean;
-  defaultValue: string;
+  defaultValue?: string;
 }) {
   const [date, setDate] = useState<Date | undefined>(
     defaultValue ? new Date(defaultValue) : undefined

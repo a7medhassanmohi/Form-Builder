@@ -230,7 +230,7 @@ function NumberFieldFormComponent({
   elementInstance: FormElementInstance;
   submitValue?:SubmitFunction ,
   isInvalid?:boolean,
-  defaultValue:string
+  defaultValue?:string
 }){
   const [value, setValue] = useState(defaultValue ||"");
   const [error, setError] = useState(false);
