@@ -24,25 +24,25 @@ import {
 } from "../ui/form";
 import { Switch } from "../ui/switch";
 import { cn } from "@/lib/utils";
-import { LuHeading1 } from "react-icons/lu";
+import { LuHeading1, LuHeading2 } from "react-icons/lu";
 type Props = {};
-const type: ElementsType = "TitleField";
+const type: ElementsType = "SubTitleField";
 const extraAttributes = {
-  title: "title field",
+  title: "sub title field",
 };
 const propertiesSchema = z.object({
   title: z.string().min(2).max(50),
 });
 type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
 
-export const TitleFieldFormElement: FormElement = {
+export const SubTitleFieldFormElement: FormElement = {
   type,
-  designerComponent: TitleFieldDesignerComponent,
-  formComponent: TitleFieldFormComponent,
-  propertiesComponent: TitleFieldPropertiesComponent,
+  designerComponent: SubTitleFieldDesignerComponent,
+  formComponent: SubTitleFieldFormComponent,
+  propertiesComponent: SubTitleFieldPropertiesComponent,
   designerBtnElement: {
-    icon: LuHeading1,
-    label: "Title field",
+    icon: LuHeading2,
+    label: "subTitle field",
   },
   construct: (id: string) => ({
     id,
@@ -56,7 +56,7 @@ type CustomInstance = FormElementInstance & {
   extraAttributes: typeof extraAttributes;
 };
 
-function TitleFieldDesignerComponent({
+function SubTitleFieldDesignerComponent({
   elementInstance,
 }: {
   elementInstance: FormElementInstance;
@@ -66,13 +66,13 @@ function TitleFieldDesignerComponent({
 
   return (
     <div className="flex flex-col gap-2 w-full">
-    <Label className="text-muted-foreground">Title field</Label>
-    <p className="text-xl">{title}</p>
+    <Label className="text-muted-foreground">sub Title field</Label>
+    <p className="">{title}</p>
   </div>
   );
 }
 
-function TitleFieldPropertiesComponent({
+function SubTitleFieldPropertiesComponent({
   elementInstance,
 }: {
   elementInstance: FormElementInstance;
@@ -135,7 +135,7 @@ function TitleFieldPropertiesComponent({
   );
 }
 
-function TitleFieldFormComponent({
+function SubTitleFieldFormComponent({
   elementInstance,
  
 }: {
@@ -145,5 +145,5 @@ function TitleFieldFormComponent({
   const element = elementInstance as CustomInstance;
 
   const { title } = element.extraAttributes;
-  return <p className="text-xl">{title}</p>
+  return <p className="">{title}</p>
 }
