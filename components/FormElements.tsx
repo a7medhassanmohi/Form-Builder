@@ -44,7 +44,7 @@ export type FormElementInstance = {
       elementInstance:FormElementInstance,
       submitValue?:SubmitFunction,
       isInvalid?:boolean,
-      defaultValue:string
+      defaultValue?:string
     }>,  //in preview
     propertiesComponent:React.FC<{
       elementInstance:FormElementInstance
