@@ -1,4 +1,5 @@
 import Logo from "@/components/Logo";
+import SelectTheme from "@/components/SelectTheme";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import React, { ReactNode } from "react";
 
@@ -9,6 +10,10 @@ function Layout({ children }: { children: ReactNode }) {
         <Logo />
         <ThemeSwitcher />
       </nav>
+      <nav className=" flex justify-end m-3">
+
+<SelectTheme/>
+</nav>
       <main className="flex w-full flex-grow">{children}</main>
     </div>
   );

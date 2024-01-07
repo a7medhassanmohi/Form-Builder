@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-    <html lang="en">
+    <html lang="en" className='yellow'>
       <body className={inter.className}>
       <NextTopLoader />
         <DesignerContextProvider>
